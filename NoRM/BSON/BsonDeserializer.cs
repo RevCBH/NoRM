@@ -331,16 +331,17 @@ namespace Norm.BSON
                 if (storageType == BSONTypes.Object)
                 {
                     var length = _reader.ReadInt32();
-                    if (length == 5)
+                    // ISSUE - we want empty collections, so don't return nulls for empty objects!
+                    /*if (length == 5)
                     {
                         _reader.ReadByte(); //eoo
                         Read(5);
                         isNull = true;
                     }
                     else
-                    {
+                    {*/
                         NewDocument(length);
-                    }
+                    //}
                 }
                 object container = null;
                 if (property != null && property.Setter == null)

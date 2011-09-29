@@ -428,6 +428,11 @@ namespace Norm.Linq
 
                     expressionRoot = parentExpression is ParameterExpression;
                 }
+                else if (parentExpression.NodeType == ExpressionType.Convert)
+                {
+                    parentExpression = ((UnaryExpression)parentExpression).Operand;
+                    expressionRoot = parentExpression is ParameterExpression;
+                }
                 else
                 {
                     expressionRoot = true;
